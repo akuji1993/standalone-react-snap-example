@@ -1,11 +1,22 @@
 import App from './App';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'; 
+import {hydrate, render} from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App/>
-  </BrowserRouter>, 
-  document.getElementById('root')
-);
+const root = document.getElementById('root');
+
+if (root.hasChildNodes()) {
+  hydrate(
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>,
+    root
+  )
+} else {
+  render (
+    <BrowserRouter>
+      <App/>
+    </BrowserRouter>,
+    root
+  )
+}
